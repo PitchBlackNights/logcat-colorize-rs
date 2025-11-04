@@ -70,7 +70,8 @@ Examples:
   adb logcat -v time | egrep -i '(sensor|wifi)' | {name}
 
 Authors: Bruno Braga, Luca Carlon
-Bugs: https://github.com/carlonluca/logcat-colorize/issues",
+Adapted to Rust: Chmouel Boudjnah
+Bugs: https://github.com/chmouel/logcat-colorize-rs/issues",
         name = NAME,
         ver = VERSION
     )
@@ -162,7 +163,7 @@ struct Theme {
     reset: Seq,
 }
 
-fn themed_default() -> Theme {
+fn themed_android_studio() -> Theme {
     use ansi::Seq;
 
     macro_rules! seq256 {
@@ -172,19 +173,19 @@ fn themed_default() -> Theme {
     }
 
     Theme {
-        id_verbose: seq256!("1", 24, 15),
+        id_verbose: seq256!("1", 242, 15),
         id_debug: seq256!("1", 33, 15),
         id_info: seq256!("1", 34, 15),
-        id_warning: seq256!("1", 178, 0),
+        id_warning: seq256!("1", 172, 15),
         id_error: seq256!("1", 160, 15),
-        id_fatal: seq256!("1", 125, 15),
+        id_fatal: seq256!("1", 124, 15),
 
-        msg_verbose: seq256!("0", 0, 37),
+        msg_verbose: seq256!("0", 0, 242),
         msg_debug: seq256!("0", 0, 33),
         msg_info: seq256!("0", 0, 34),
-        msg_warning: seq256!("0", 0, 178),
-        msg_error: seq256!("0", 0, 160),
-        msg_fatal: seq256!("0", 0, 125),
+        msg_warning: seq256!("0", 0, 172),
+        msg_error: seq256!("0", 236, 160),
+        msg_fatal: seq256!("0", 0, 124),
 
         tid_pid: seq256!("0", 236, 81),
 
@@ -446,7 +447,7 @@ fn main() -> io::Result<()> {
         return Ok(());
     }
 
-    let theme = themed_default();
+    let theme = themed_android_studio();
 
     // Spotlight regex prepared once, applied at print time
     let spotlight_re = args
