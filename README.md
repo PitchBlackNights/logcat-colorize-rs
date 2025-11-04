@@ -5,6 +5,8 @@ the command-line tool that colorizes Android `adb logcat` output.
 
 This version removes Boost dependencies and keeps the original behavior, implemented as a single fast Rust binary.
 
+<img width="2580" height="1890" alt="image" src="https://github.com/user-attachments/assets/85327dbc-26e4-4c3e-ae81-276a0b41846d" />
+
 ## Features
 
 - Colorizes `adb logcat` output by log level (`V`, `D`, `I`, `W`, `E`, `F`)
