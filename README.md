@@ -1,11 +1,10 @@
 # logcat-colorize (Rust Port)
 
-A Rust rewrite of [carlonluca/logcat-colorize](https://github.com/carlonluca/logcat-colorize),  
-the command-line tool that colorizes Android `adb logcat` output.
+A Rust rewrite of [carlonluca/logcat-colorize](https://github.com/carlonluca/logcat-colorize), the command-line tool that colorizes Android `adb logcat` output.
 
-This version removes Boost dependencies and keeps the original behavior, implemented as a single fast Rust binary.
+This version removes the Boost dependency, and aims to keeps the original behavior, implemented as a single fast Rust binary.
 
-<img width="2580" height="1890" alt="image" src="https://github.com/user-attachments/assets/85327dbc-26e4-4c3e-ae81-276a0b41846d" />
+![logcat-colorize example](/assets/example.png)
 
 ## Features
 
@@ -14,8 +13,7 @@ This version removes Boost dependencies and keeps the original behavior, impleme
 - Regex-based highlighting (`-s`, `--spotlight`)
 - Option to ignore unrecognized lines (`-i`, `--ignore`)
 - Lists ANSI color codes (`--list-ansi`)
-- Respects color environment variables
-- Includes 256-color defaults
+- (UNIMPLEMENTED) Respects color environment variables
 
 ## Build
 
@@ -26,8 +24,6 @@ cargo build --release
 ````
 
 Binary is created at `target/release/logcat-colorize`.
-
----
 
 ## Usage
 
@@ -49,9 +45,7 @@ Show color palette:
 target/release/logcat-colorize --list-ansi
 ```
 
----
-
-## Custom Colors
+## Custom Colors (UNIMPLEMENTED)
 
 Each color can be overridden with an ANSI escape sequence in an environment variable.
 
@@ -62,24 +56,11 @@ export LOGCAT_COLORIZE_MSG_INFO='^[0;38;5;34m'           # green text
 
 Available variables:
 
-```
+```plaintext
 LOGCAT_COLORIZE_ID_{DEBUG,VERBOSE,INFO,WARNING,ERROR,FATAL}
 LOGCAT_COLORIZE_MSG_{DEBUG,VERBOSE,INFO,WARNING,ERROR,FATAL}
 LOGCAT_COLORIZE_TID_PID
 ```
-
----
-
-## Differences from Original
-
-| Feature      | C++ version        | Rust version                 |
-| ------------ | ------------------ | ---------------------------- |
-| Dependencies | Boost              | clap, regex, atty, once_cell |
-| Build system | Makefile           | Cargo                        |
-| Behavior     | same               | same                         |
-| Extra        | 256-color defaults |                              |
-
----
 
 ## License
 
